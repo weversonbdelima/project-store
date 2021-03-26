@@ -1,0 +1,44 @@
+
+<section class="cadastro">
+  <div class="container-fluid">
+    <!-- Content here -->
+    <h1>Cadastro</h1>
+  <form class="row g-3" v-on:submit="handleOnSubmit" action="#">
+    <div class="mb-3">
+      <label class="form-label">Nome</label>
+      <input type="text" 
+             class="form-control" 
+             placeholder="Nome"
+             v-model="nome"/>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Preço</label>
+      <input type="number" 
+             class="form-control" 
+             v-model="preco"/>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Descrição</label>
+      <textarea type="text" 
+                class="form-control" 
+                placeholder="Descrição"
+                v-model="descrisao"></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Imagem</label>
+      <input class="form-control" 
+             type="file" 
+             ref="file"
+             multiple
+             accept="image/*" 
+             v-on:change="handleOnFileSelected"/>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </div>
+    <img v-bind:src="imagem">
+  </form>
+  </div>
+</section>
+
+

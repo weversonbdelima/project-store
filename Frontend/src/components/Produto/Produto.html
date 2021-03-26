@@ -1,0 +1,22 @@
+
+<section class="produto">
+  <div class=" shadow-sm p-3 mb-5 bg-white rounded" style="width: 18rem;">
+  <div class="card" >
+    <img class="card-img-top" v-bind:src="this.file" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{produto.nome}}</h5>
+      <span class="card-text">Preço: {{produto.preco}}</span>
+      <p class="card-text"> Descrição: {{produto.descrisao}}</p>
+      <div class="row">
+        <div class="col">
+          <a href="#" class="btn btn-success">Editar</a>
+        </div>
+        <div class="col">
+          <a href="#" class="btn btn-danger">Excluir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</section>
+
