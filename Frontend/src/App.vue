@@ -1,52 +1,59 @@
 <template>
   <div id="app">
-      <header>
-        <nav id="navbar" class="navbar navbar navbar-light" >
-          <div class="container-fluid">
-            <router-link class="navbar-brand" to="/">
-              <img src="./assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-              Home
-            </router-link>
-     
-          
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/cadastro">Cadastro</router-link>
-            </li>    
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Buscar</button>
-          </form>
-         </div>
-        </nav>
-      </header>
-      <div class="container">
-            <router-view/>
-      </div>
+    <Navbar/>
+    <div class="container">
+       <router-view/>
+    </div>
 
+    <Footer/>
   </div>
 </template>
 
+
+<script>
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
+export default {
+  name: 'App',
+  components:{
+    Navbar,
+    Footer
+  }
+}
+</script>
+
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,700&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+
+  --primary-color: #ffffff;
+  --second-color: #000000;
+  --ternary-color: #8338EC;
+  --quartenary-color: #FF006E;
+
+  box-sizing: border-box;
+
+}
+
+a{
+  text-decoration: none;
+  color: var(--primary-color);
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  background: var(--bs-blue);
+  background: var(--primary-color);
+  display: flex;
+  flex-direction: column;  
+  justify-content: space-between;
+  height: 100vh;
+  
 }
 
-#navbar {
-  background-color: #e3f2fd;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

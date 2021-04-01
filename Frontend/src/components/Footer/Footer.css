@@ -1,0 +1,12 @@
+.footer {
+    text-align: center;
+    background-color: var(--ternary-color);
+    color: var(--primary-color);
+
+}
+
+.footer h1{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+}

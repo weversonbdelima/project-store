@@ -12,7 +12,7 @@ import com.example.produto.models.ProdutoModel;
 public class DatabaseServiceImplements implements DatabaseService{
 
     //Configuração banco de dados
-    final private String DATABASE_URL = "jdbc:oracle:thin:@192.168.1.10:1521:orcl";
+    final private String DATABASE_URL = "jdbc:oracle:thin:@192.168.1.13:1521:orcl";
     final private String USER = "produto";
     final private String PASSWORD = "produto_password";
 

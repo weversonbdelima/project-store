@@ -1,19 +1,17 @@
 <template>
   <div class="home">
-    <li v-for="produto in produtos" v-bind:key="produto.id">
-      <Produto  v-bind:produto="produto"/>
-    </li>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Produto from '../components/Produto'
+
 import api from '../services/api'
 export default {
   name: 'Home',
   components: {
-    Produto
+
   },
    data () {
     return {
@@ -51,3 +49,11 @@ export default {
   }
 }
 </script>
+<style>
+  .grid-container{
+    display: grid;
+    grid-column-gap: 25px;
+    grid-row-gap: 100px;
+     grid-template-columns: auto auto auto;
+  }
+</style>
