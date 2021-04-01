@@ -1,42 +1,42 @@
 <template>
     <div class="preview">
-        <div class="preview-container">
-            <div class="grid-item title">
-                <h1> {{$route.params.id}}</h1>
+        <div class="grid-container">
+            <img class="item-image" v-bind:src="file"/>
+            <div class="item-content">
+                <h1>{{produto.nome}}</h1>
+                <h3>R$ {{produto.preco}}</h3>
+                <button v-on:click="handleOnClickUpdate">Atualizar</button>
+                <button v-on:click="handleOnClickDelete">Deletar</button>
             </div>
-            <div class="grid-item image">
-                <img src="../assets/logo.png"/>
-            </div>
-            <div class="grid-item price">
-                R$
-                <span>170,00</span>
-            </div>
-            <div class="grid-item action">
-                <button>Atualizar</button>
-                <button>Deletar</button>
-            </div>
-            <div class="grid-item description">
-                <h3>Descrição</h3>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-                
-            </div>
+            <div class="item-descrisao">
+                <p>{{produto.descrisao}}</p>    
+            </div>       
+
         </div>
     </div>
 </template>
 
 <script>
+import api from '../services/api'
 export default {
     name: 'Preview',
+    props: {
+        produto: {},
+        file: String
+    },
     data (){
         return{
-            produto: ''
         }
     },
-    methods:{
-        searchProduto: function(){
-            //parei aqui
+    mounted (){
+    },
+    methods: {
+        handleOnClickDelete: async function() {
+            await api.delete('/produto/'+this.produto.id);
+            this.$router.push({path: '/'});
+        },
+        handleOnClickUpdate: async function () {
+            this.$router.push({name: 'Update', params: {produto: this.produto, file: this.file} });
         }
     }
 
@@ -44,68 +44,22 @@ export default {
 </script>
 
 <style>
-    .preview{
-        
-    }
-    .preview-container{
-        max-width: 800px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: minmax(75px, auto);
-        grid-gap: 15px;
-    }
-    .grid-item{
-        padding: 20px;
-    }
+   .grid-container{
+       display: grid;
+       grid-template-columns: repeat(2, 1fr);
+       grid-template-rows: 2fr 1fr;
+       padding: 40px;
+   }
 
-    .title{
-        grid-column: 1/3;
-        color: var(--ternary-color);
-    }
-    .image{
-        grid-row: 2/4;
-        display: flex;
-        align-items: center;
-    }
-    .image img{
-        margin: auto;
-    }
-    .price{
-        grid-column: 2/3;
-        color: #c8c8c8;
-        font-weight: 700;
-        font-size: 18px;
-    }
-    .price span{
-        font-size: 28px;
-        color: var(--quartenary-color);
-    }
+   .item-descrisao{
+       grid-column: 1/3;
+   }
 
-    .action{
-        grid-column: 2/3;
-        
-    }
-    .action button{
-        margin: 0 10px;
-    }
-
-    .action button:hover{
-        opacity: 0.7;
-    }
-
-    .description{
-        grid-column: 1/3;
-        color: #c8c8c8;
-    }
-
-
-   
-
-
-    @media only screen and (max-width: 600px) {
-        .preview-container{
+   @media only screen and (max-width: 600px) {
+        .grid-container{
             display: flex;
             flex-direction: column;
-        }
-    }
+        } 
+   }
+   
 </style>

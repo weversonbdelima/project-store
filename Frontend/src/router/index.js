@@ -4,7 +4,7 @@ import Cadastro from '../views/Cadastro.vue'
 import Catalog from '../views/Catalog.vue'
 import Preview from '../views/Preview.vue'
 import Register from '../views/Register.vue'
-
+import Update from '../views/Update.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,9 +19,16 @@ const routes = [
     component: Register
   },
   {
-    path: '/preview/:id',
-    name: 'Previe',
+    path: '/preview',
+    name: 'Preview',
     component: Preview,
+    props: true
+  },
+  {
+    path: '/update',
+    name: 'Update',
+    component: Update,
+    props: true
   },
   {
     path: '/about',

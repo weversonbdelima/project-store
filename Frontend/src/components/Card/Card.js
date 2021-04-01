@@ -33,8 +33,7 @@ export default {
         return formated[1];
       },
       handleOnClick: function(){
-        console.log('teste')
-        this.$router.push({path: 'preview/' + this.produto.id });
+        this.$router.push({name: 'Preview', params: {produto: this.produto, file: this.file} });
       }
   }
 }

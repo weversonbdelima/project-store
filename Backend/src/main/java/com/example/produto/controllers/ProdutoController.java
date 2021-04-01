@@ -30,6 +30,12 @@ public class ProdutoController{
         databaseService.create(produtoModel);
     }
 
+    @GetMapping("/{id}")
+    ProdutoModel ready(@PathVariable int id){
+        DatabaseService databaseService = new DatabaseServiceImplements();
+        return databaseService.ready(id);
+    }
+
     @PutMapping("/{id}")
     public void update(@PathVariable int id, @RequestBody ProdutoModel produtoModel){
         DatabaseService databaseService = new DatabaseServiceImplements();

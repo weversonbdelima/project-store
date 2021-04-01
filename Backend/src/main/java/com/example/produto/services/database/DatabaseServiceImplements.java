@@ -12,7 +12,7 @@ import com.example.produto.models.ProdutoModel;
 public class DatabaseServiceImplements implements DatabaseService{
 
     //Configuração banco de dados
-    final private String DATABASE_URL = "jdbc:oracle:thin:@192.168.1.13:1521:orcl";
+    final private String DATABASE_URL = "jdbc:oracle:thin:@192.168.1.7:1521:orcl";
     final private String USER = "produto";
     final private String PASSWORD = "produto_password";
 
@@ -35,6 +35,32 @@ public class DatabaseServiceImplements implements DatabaseService{
         }
     }
 
+
+    public ProdutoModel ready(int id){
+        //Instrução DML
+        final String sql = "select * from produtos where produto_id = " + id;
+        try (Connection connection = DriverManager.getConnection(this.DATABASE_URL, this.USER, this.PASSWORD);
+            Statement statement = connection.createStatement();
+        ) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            ProdutoModel produtoModel = null;
+            while(resultSet.next()){
+                produtoModel = new ProdutoModel(Integer.parseInt(resultSet.getObject(1).toString()),
+                                                            resultSet.getObject(2).toString(),
+                                                            Double.parseDouble(resultSet.getObject(3).toString()),
+                                                            resultSet.getObject(4).toString(),
+                                                            resultSet.getObject(5).toString()
+                                                        );
+            }
+            return produtoModel;
+            
+        } catch (SQLException sqlException) {
+            //TODO: handle exception
+            sqlException.printStackTrace();
+        }
+        return null;
+    }
+
     public void update(int id, ProdutoModel produtoModel){
         //Instrução DML
         final String sql = "update produtos set nome = '"+produtoModel.getNome()+"',"+
@@ -42,8 +68,7 @@ public class DatabaseServiceImplements implements DatabaseService{
                             "descrisao = '"+produtoModel.getDescrisao()+"',"+
                             "imagem = '"+produtoModel.getImagem()+"'"+
                             "where produto_id = "+ id;
-
-                System.out.println(sql);            
+          
         try (
             Connection connection = DriverManager.getConnection(
                 this.DATABASE_URL, this.USER, this.PASSWORD);
@@ -60,7 +85,7 @@ public class DatabaseServiceImplements implements DatabaseService{
     public void delete(int id){
         //Instrução DML
         final String sql = "delete from produtos "+
-                            "where produto_id = "+ id;
+                            "where produto_id = "+ Integer.toString(id);
         try (
             Connection connection = DriverManager.getConnection(
                 this.DATABASE_URL, this.USER, this.PASSWORD);

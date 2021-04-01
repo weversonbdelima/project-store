@@ -4,6 +4,7 @@ import java.util.List;
 import com.example.produto.models.ProdutoModel;
 public interface DatabaseService{
     public void create(ProdutoModel produtoModel);
+    public ProdutoModel ready(int id);
     public void update(int id, ProdutoModel produtoModel);
     public void delete(int id);
     public List<ProdutoModel> list();
